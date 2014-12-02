@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import android.widget.Spinner;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -17,6 +19,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import android.widget.AdapterView.*;
+import android.widget.*;
+import android.view.*;
+import android.view.ContextMenu.*;
+import android.content.*;
 
 
 public class MainActivity extends Activity {
@@ -24,6 +31,8 @@ public class MainActivity extends Activity {
     public ListView newsListView;
     public ArrayAdapter<RssItem> adapter;
     public List<RssItem> rssItemList = new ArrayList<RssItem>();
+	
+	
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +49,46 @@ public class MainActivity extends Activity {
       //  String siteURL = "http://www.npr.org/rss/rss.php?id=1001";
         String siteURL = "http://xmlhost.x10host.com/xmllottery.xml";
         new RetrieveFeedTask().execute(siteURL);
-    }
+		
+		
+		
+	
+		newsListView.setOnItemClickListener(new OnItemClickListener()
+			{
+
+			
+
+				@Override
+				public void onItemClick(AdapterView<?> adapter, View v, int position,
+										long arg3) 
+				{
+					
+
+					
+					Object listPosition = adapter.getItemAtPosition(position);
+				//	String listLink = adapter.link;
+				//    Object listLink = adapter.
+				
+				    String test =(String)rssItemList.toString();
+					
+					Toast.makeText(getApplicationContext(), "You selected item "+ position + ":" + listPosition, Toast.LENGTH_LONG).show();
+					//Toast.makeText(getApplication(), rssItemList. , Toast.LENGTH_LONG).show();
+					//rssItemList.toString();
+					//String value = (String)adapter.getItemAtPosition(position); 
+					//Toast.makeText(MainActivity.this, 
+					//		 "Test Pop up", Toast.LENGTH_LONG).show();
+					
+					// assuming string and if you want to get the value on click of list item
+					// do what you intend to do on click of listview row
+				}
+			});     
+			
+			
+	}
+	
+	
+	
+	
 
     public List<RssItem> parseRSS(URL feedURL)
             throws XmlPullParserException, IOException {
@@ -72,8 +120,8 @@ public class MainActivity extends Activity {
                         else if (name.equalsIgnoreCase("prizeValue")){
                             currentRSSItem.setDescription(parser.nextText());
                         }
-                        else if (name.equalsIgnoreCase("pubDate")) {
-                            currentRSSItem.setPubDate(parser.nextText());
+                        else if (name.equalsIgnoreCase("gamenumber")) {
+                            currentRSSItem.setGameNumber(parser.nextText());
                         } else if (name.equalsIgnoreCase("name")) {
                             currentRSSItem.setTitle(parser.nextText());
                         }
@@ -93,6 +141,8 @@ public class MainActivity extends Activity {
         return rssItemList;
     }
 
+	
+	
     //------- AsyncTask ------------//
     class RetrieveFeedTask extends AsyncTask<String, Integer, Integer> {
 
@@ -120,6 +170,8 @@ public class MainActivity extends Activity {
     }
 
 
+	
+	
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -133,13 +185,50 @@ public class MainActivity extends Activity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+      
+		switch (item.getItemId()) {
+			case R.id.action_newfirst:
+				Toast.makeText(getApplicationContext(), "you selected new first sorting" , Toast.LENGTH_LONG).show();
+				// search action
+				return true;
+			case R.id.action_abc:
+				// alphabetically
+				
+				
+				
+				Toast.makeText(getApplicationContext(), "you selected alphabetical sorting" , Toast.LENGTH_LONG).show();
+				
+				//	LocationFound();
+				return true;
+			case R.id.action_cost:
+				
+				Toast.makeText(getApplicationContext(), "you selected cost sorting" , Toast.LENGTH_LONG).show();
+				// refresh
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
         }
+    
+	
+		
+		
 
-        return super.onOptionsItemSelected(item);
+     //   return super.onOptionsItemSelected(item);
     }
+	
+	
+	
+	
+	
+        // Take appropriate action for each action item click
+        
+    /**
+     * Launching new activity
+     * */
+   /* private void LocationFound() {
+        Intent i = new Intent(MainActivity.this, LocationFound.class);
+        startActivity(i);
+    }
+	*/
+	
 }

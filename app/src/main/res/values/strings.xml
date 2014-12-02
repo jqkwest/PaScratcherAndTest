@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">PaScratcher</string>
+    <string name="app_name">PaScratcherTwo</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+	
+	<string name="sort_by_string">Sort by</string>
+
+    <string-array name="sort_by">
+        <item>Alphabetically</item>
+        <item>Cost</item>
+		<item>Newest First</item>
+        
+    </string-array>
 
 </resources>

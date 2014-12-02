@@ -6,7 +6,7 @@ package dallsoft.com.pascratcher;
 public class RssItem {
 
     private String link;
-    private String pubDate;
+    private String gameNumber;
     private String description = "";
     private String title;
 
@@ -18,12 +18,12 @@ public class RssItem {
         this.link = link;
     }
 
-    public String getPubDate() {
-        return pubDate;
+    public String getGameNumber() {
+        return gameNumber;
     }
 
-    public void setPubDate(String pubDate) {
-        this.pubDate = pubDate;
+    public void setGameNumber(String gameNumber) {
+        this.gameNumber = gameNumber;
     }
 
     public String getDescription() {
