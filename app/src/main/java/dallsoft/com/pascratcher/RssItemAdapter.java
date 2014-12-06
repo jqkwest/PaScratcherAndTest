@@ -40,7 +40,8 @@ public class RssItemAdapter extends ArrayAdapter<RssItem> {
         }
 
         RssItem item = getItem(position);
-		this.link = item.getLink();
+	//	this.link = item.getLink();
+	    
 		
 		// have a drop down boolen if sort == by cost || by alphabet
 		
@@ -49,17 +50,17 @@ public class RssItemAdapter extends ArrayAdapter<RssItem> {
             TextView titleView = (TextView) view.findViewById(R.id.titleText);
             TextView descView = (TextView) view
                     .findViewById(R.id.descriptionText);
-			TextView linkView = (TextView) view.findViewById(R.id.linkText);
+		//	TextView linkView = (TextView) view.findViewById(R.id.linkText);
 					
-			TextView gameNumberTV = (TextView) view.findViewById(R.id.gameNumberTV);
+		//	TextView gameNumberTV = (TextView) view.findViewById(R.id.gameNumberTV);
  
             titleView.setText(item.getTitle());
          //   descView.setText((item.getDescription()).replaceAll("[\n\r]", ""));
             descView.setText((item.getDescription()));
 			
-			linkView.setText((item.getLink()));
+		//	linkView.setText((item.getCost()));
 			
-			gameNumberTV.setText((item.getGameNumber()));
+		//	gameNumberTV.setText((item.getGameNumber()));
 			
 		
         }
@@ -71,11 +72,8 @@ public class RssItemAdapter extends ArrayAdapter<RssItem> {
         return view;
     }
 	
-	public void setSort(String sort){
-		
-		
-		this.sort = sort;
-	}
+	
+	
 	
 	
 	

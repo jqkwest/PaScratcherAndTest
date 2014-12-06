@@ -24,6 +24,7 @@ import android.widget.*;
 import android.view.*;
 import android.view.ContextMenu.*;
 import android.content.*;
+import java.util.*;
 
 
 public class MainActivity extends Activity {
@@ -31,6 +32,7 @@ public class MainActivity extends Activity {
     public ListView newsListView;
     public ArrayAdapter<RssItem> adapter;
     public List<RssItem> rssItemList = new ArrayList<RssItem>();
+	
 	
 	
 
@@ -117,6 +119,9 @@ public class MainActivity extends Activity {
                             currentRSSItem.setDescription(parser.nextText());
 
                         }
+								else if (name.equalsIgnoreCase("cost")) {
+									currentRSSItem.setCost(parser.nextText());
+								}
                         else if (name.equalsIgnoreCase("prizeValue")){
                             currentRSSItem.setDescription(parser.nextText());
                         }
@@ -189,10 +194,21 @@ public class MainActivity extends Activity {
 		switch (item.getItemId()) {
 			case R.id.action_newfirst:
 				Toast.makeText(getApplicationContext(), "you selected new first sorting" , Toast.LENGTH_LONG).show();
+				
+				adapter.notifyDataSetChanged();
+				Collections.sort(rssItemList, RssItem.GameNumberComparator);
+				adapter.notifyDataSetChanged();
 				// search action
 				return true;
 			case R.id.action_abc:
 				// alphabetically
+
+				
+				adapter.notifyDataSetChanged();
+				Collections.sort(rssItemList, RssItem.GameNameComparator );
+				adapter.notifyDataSetChanged();
+				
+				
 				
 				
 				
@@ -201,6 +217,11 @@ public class MainActivity extends Activity {
 				//	LocationFound();
 				return true;
 			case R.id.action_cost:
+				
+				
+				adapter.notifyDataSetChanged();
+				Collections.sort(rssItemList, RssItem.CostComparator );
+				adapter.notifyDataSetChanged();
 				
 				Toast.makeText(getApplicationContext(), "you selected cost sorting" , Toast.LENGTH_LONG).show();
 				// refresh
