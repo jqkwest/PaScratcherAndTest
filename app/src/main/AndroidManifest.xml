@@ -12,7 +12,7 @@
 
 
         <activity
-            android:name="dallsoft.com.pascratcher.MainActivity"
+            android:name="dallsoft.com.pascratcherTwo.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

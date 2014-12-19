@@ -6,6 +6,8 @@
     <string name="action_settings">Settings</string>
 	
 	<string name="sort_by_string">Sort by</string>
+    <string name="prizes_Left_TV">Prizes Left</string>
+    <string name ="value_of_prizes_TV">Value of Prize></string>
 
     <string-array name="sort_by">
         <item>Alphabetically</item>
