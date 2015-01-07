@@ -1,5 +1,6 @@
 package dallsoft.com.pascratcherTwo;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -26,6 +27,8 @@ public class MainActivity extends Activity {
     public ListView newsListView;
     public ArrayAdapter<TicketItem> adapter;
     public List<TicketItem> rssItemList = new ArrayList<TicketItem>();
+
+    ActionBar.Tab Tab1, Tab2;
 	
 	
 	
@@ -39,45 +42,26 @@ public class MainActivity extends Activity {
 
         adapter = new TicketItemAdapter(this, android.R.layout.simple_list_item_1, rssItemList);
         newsListView.setAdapter(adapter);
+
+
+/*
+        ActionBar actionBar = getActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+        Tab1 = actionBar.newTab().setText("Tab2");
+        Tab2 = actionBar.newTab().setText("Tab3");
+
+
+
+        actionBar.addTab(Tab1);
+        actionBar.addTab(Tab2);
+*/
      //  String siteURL = "http://xmlhost.x10host.com/xmllottery.xml";
 
         String siteURL = "http://xmlhost.savethis.net/xmllottery.xml";
         new RetrieveFeedTask().execute(siteURL);
 
-       // adapter.notifyDataSetChanged();
 
-		
-	
-	/*	newsListView.setOnItemClickListener(new OnItemClickListener()
-			{
-
-			
-
-				@Override
-				public void onItemClick(AdapterView<?> adapter, View v, int position,
-										long arg3) 
-				{
-					
-
-					
-					Object listPosition = adapter.getItemAtPosition(position);
-				//	String listLink = adapter.link;
-				//    Object listLink = adapter.
-				
-
-					
-					Toast.makeText(getApplicationContext(), "You selected item "+ position + ":" + listPosition, Toast.LENGTH_LONG).show();
-					//Toast.makeText(getApplication(), rssItemList. , Toast.LENGTH_LONG).show();
-					//rssItemList.toString();
-					//String value = (String)adapter.getItemAtPosition(position); 
-					//Toast.makeText(MainActivity.this, 
-					//		 "Test Pop up", Toast.LENGTH_LONG).show();
-					
-					// assuming string and if you want to get the value on click of list item
-					// do what you intend to do on click of listview row
-				}
-			});     
-*/
 
     }
 	
@@ -99,7 +83,7 @@ public class MainActivity extends Activity {
 
         ////////////////////////////////////////////////////////////// attempt to slow down a bit to keep from crashing
         try {
-            Thread.sleep(200);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -232,7 +216,6 @@ public class MainActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-       // adapter.notifyDataSetChanged();
         return true;
     }
 
@@ -287,28 +270,9 @@ public class MainActivity extends Activity {
 		
 		
 
-     //   return super.onOptionsItemSelected(item);
     }
-	
-	
-	
-	
-	
-        // Take appropriate action for each action item click
-        
-    /**
-     * Launching new activity
-     * */
-   /* private void LocationFound() {
-        Intent i = new Intent(MainActivity.this, LocationFound.class);
-        startActivity(i);
-    }
-	*/
-  /*@Override
-    protected void onResume(Bundle savedInstanceState){
-        super.onResume();
-        adapter.notifyDataSetChanged();
-    }*/
+
+
 
     protected void onPause(Bundle savedInstanceState){
 
